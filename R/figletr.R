@@ -5,7 +5,13 @@ CHARSET <- c(" ", "!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+",
              "S", "T", "U", "V", "W", "X", "Y", "Z", "[", "\\", "]", "^",
              "_", "`", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k",
              "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x",
-             "y", "z", "{", "|", "}", "~", "Ä", "Ö", "Ü", "ä", "ö", "ü")
+             "y", "z", "{", "|", "}", "~",
+             # "Ä", "Ö", "Ü", "ä", "ö", "ü"
+             # "\\u00c4", "\\u00d6", "\\u00dc", "\\u00e4", "\\u00f6", "\\u00fc"
+             stringi::stri_unescape_unicode(
+               c("\\u00c4", "\\u00d6", "\\u00dc", "\\u00e4", "\\u00f6", "\\u00fc")
+               )
+             )
 
 CHARSET_LENGTH <- length(CHARSET)
 
@@ -46,9 +52,10 @@ font_info <- function(path = "inst/fonts/basic.flf") {
 
 }
 
-#' @title Parse a figlet fonts
+#' @title Parse figlet fonts
 #' @param path The font path.
 #' @return A named list which every elements is a character in the figlet font.
+#' @source \url{http://www.jave.de/figlet/figfont.html}
 #' @export
 parse_font <- function(path = "inst/fonts/basic.flf"){
 
@@ -91,8 +98,18 @@ parse_font <- function(path = "inst/fonts/basic.flf"){
 #' @param font A string specifying the font to use, if is not and option in the
 #'   available fonts (`figletr::fonts`) this parameter will be used as a path to
 #'   use this with external figlet fonts.
+#' @examples
+#'
+#' figlet(Sys.Date())
+#'
+#' text <- "Figlet in R!"
+#'
+#' figlet(text)
+#'
+#' figlet(text, "banner")
+#'
 #' @export
-figlet <- function(msg, font = "standard") {
+figlet <- function(msg, font = getOption("figletr.default_font")) {
 
   msg <- as.character(msg)
 
@@ -108,11 +125,7 @@ figlet <- function(msg, font = "standard") {
 
   font <- parse_font(path)
 
-  # txt <- stringr::str_squish(txt)
-
   out <- unlist(stringr::str_split(msg, ""))
-
-  # validate text!
 
   out <- font[out]
 
@@ -120,7 +133,15 @@ figlet <- function(msg, font = "standard") {
 
   out <- apply(out, 1, stringr::str_c, sep = "", collapse = "")
 
-  invisible(lapply(out, message))
+  printer <- getOption("figletr.printer")
+
+  if(!identical(printer, message)) {
+
+    out <- paste0(out, "\n")
+
+  }
+
+  invisible(lapply(out, printer))
 
 }
 
@@ -143,4 +164,13 @@ figlet_demo <- function(msg = "Figlet in R!"){
 
 }
 
+
+
+.onLoad <- function(libname = find.package("figletr"), pkgname = "figletr") {
+
+  options(
+    figletr.printer = message,
+    figletr.default_font = "standard"
+  )
+}
 

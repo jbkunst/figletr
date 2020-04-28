@@ -2,7 +2,10 @@
 % Please edit documentation in R/figletr.R
 \name{parse_font}
 \alias{parse_font}
-\title{Parse a figlet fonts}
+\title{Parse figlet fonts}
+\source{
+\url{http://www.jave.de/figlet/figfont.html}
+}
 \usage{
 parse_font(path = "inst/fonts/basic.flf")
 }
@@ -13,5 +16,5 @@ parse_font(path = "inst/fonts/basic.flf")
 A named list which every elements is a character in the figlet font.
 }
 \description{
-Parse a figlet fonts
+Parse figlet fonts
 }

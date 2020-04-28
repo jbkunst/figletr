@@ -4,7 +4,7 @@
 \alias{figlet}
 \title{Write a message with figlet fonts}
 \usage{
-figlet(msg, font = "standard")
+figlet(msg, font = getOption("figletr.default_font"))
 }
 \arguments{
 \item{msg}{The message. An object which can be converted to character.}
@@ -15,4 +15,15 @@ use this with external figlet fonts.}
 }
 \description{
 Write a message with figlet fonts
+}
+\examples{
+
+figlet(Sys.Date())
+
+text <- "Figlet in R!"
+
+figlet(text)
+
+figlet(text, "banner")
+
 }

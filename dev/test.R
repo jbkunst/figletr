@@ -8,6 +8,24 @@ figlet()
 
 figlet(Sys.Date())
 
+figlet("Figlet in R!")
+
+figlet("Hello")
+
+figlet("Star Wars", "starwars")
+
+
+# default font ------------------------------------------------------------
+options(figletr.default_font = "mini")
+
+figlet("Figlet in R!")
+
+figlet("Hello")
+
+options(figletr.default_font = "standard")
+
+
+# using font as argument --------------------------------------------------
 text <- "Figlet in R!"
 
 figlet(text)
@@ -16,7 +34,7 @@ figlet(text, "banner")
 
 figlet(text, "starwars")
 
-figlet(text, "trek")
+figlet(text, "contessa")
 
 figlet(text, "smkeyboard")
 
@@ -28,6 +46,16 @@ figlet(text, "term")
 
 figlet_demo()
 
+
+# change printer ----------------------------------------------------------
+options(figletr.printer = cat)
+
+figlet("Figlet in R!")
+
+figlet("Hello")
+
+
+# demo --------------------------------------------------------------------
 fonts_list <- head(figletr::fonts$font, 30)
 
 invisible(
@@ -39,6 +67,12 @@ invisible(
     }
   )
 )
+
+
+# extras ------------------------------------------------------------------
+figletr:::CHARSET
+
+cat(figletr:::CHARSET)
 
 #   txt <- "32 (blank/space) 64 @             96  `
 # 33 !             65 A             97  a
@@ -92,6 +126,8 @@ invisible(
 #               "w", "x", "y", "z", "{", "|", "}", "~")
 #
 # char_set <- c(char_set, c("Ä", "Ö", "Ü", "ä", "ö", "ü"))
+#
+# dput(stringi::stri_escape_unicode(c( "Ä", "Ö", "Ü", "ä", "ö", "ü")))
 #
 # dput(char_set)
 
