@@ -26,19 +26,17 @@ And the development version from [GitHub](https://github.com/) with:
 devtools::install_github("jbkunst/figletr")
 ```
 
-## Simple usage
-
-This is a basic example which shows you how to solve a common problem:
+## Usage
 
 ``` r
 library(figletr)
 
 figlet(Sys.Date())
-#>   ____     ___    ____     ___             ___    _  _             ____    _____
-#>  |___ \   / _ \  |___ \   / _ \           / _ \  | || |           |___ \  |___  |
-#>    __) | | | | |   __) | | | | |  _____  | | | | | || |_   _____    __) |    / /
-#>   / __/  | |_| |  / __/  | |_| | |_____| | |_| | |__   _| |_____|  / __/    / /
-#>  |_____|  \___/  |_____|  \___/           \___/     |_|           |_____|  /_/
+#>   ____     ___    ____     ___             ___    _  _             ____     ___
+#>  |___ \   / _ \  |___ \   / _ \           / _ \  | || |           |___ \   / _ \
+#>    __) | | | | |   __) | | | | |  _____  | | | | | || |_   _____    __) | | (_) |
+#>   / __/  | |_| |  / __/  | |_| | |_____| | |_| | |__   _| |_____|  / __/   \__, |
+#>  |_____|  \___/  |_____|  \___/           \___/     |_|           |_____|    /_/
 #> 
 
 text <- "Figlet in R!"
@@ -238,3 +236,19 @@ for(i in 1:length(R)) message(R[i])
 #> |  \
 #> 
 ```
+
+## Related work
+
+%\>% OMG\! I swear I checked to see if there was any previous
+implementation of figlet fonts in R.
+
+  - <https://github.com/wrathematics/Rfiglet> Uses the C command line
+    figlet and have a shiny app\!
+  - <https://github.com/richfitz/rfiglet>
+
+So what can this package offer?:
+
+  - The possibily to change/fix the default font.
+  - Relative simple integration with {crayon} package.
+  - A figlet font parser. You can obtain a character list with every
+    *character*.

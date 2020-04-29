@@ -164,8 +164,6 @@ figlet_demo <- function(msg = "Figlet in R!"){
 
 }
 
-
-
 .onLoad <- function(libname = find.package("figletr"), pkgname = "figletr") {
 
   options(
@@ -173,4 +171,3 @@ figlet_demo <- function(msg = "Figlet in R!"){
     figletr.default_font = "standard"
   )
 }
-
