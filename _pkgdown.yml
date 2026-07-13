@@ -1,0 +1,27 @@
+url: https://jkunst.com/figletr/
+
+authors:
+  Joshua Kunst:
+    href: https://jkunst.com
+
+lang: en
+
+template:
+  bootstrap: 5
+  bslib:
+    primary: "#6F42C1"
+    border-radius: 0.5rem
+    btn-border-radius: 0.25rem
+    base_font:
+      google: "IBM Plex Sans"
+    heading_font:
+      google: "IBM Plex Sans"
+    code_font:
+      google: "Fira Mono"
+    headings-color: "#2A2433"
+    headings-line-height: 1.2
+    headings-margin-bottom: 0.75rem
+
+navbar:
+  bg: primary
+  type: dark
